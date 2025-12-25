@@ -54,6 +54,7 @@
     "items": [
       {
         "label": "Unban Message",
+        "description": "Settings",
         "forUserType": "moderator",
         "location": ["subreddit"],
         "endpoint": "/internal/menu/app-settings",

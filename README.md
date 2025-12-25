@@ -10,6 +10,11 @@ This app sends a customizable message (via modmail or private chat) automaticall
 
 ## Changelog
 
+### [0.1.0] (2025-12-24)
+
+- Added the word "Settings" to the subreddit-level menu item.
+- Bumped minor version.
+
 ### [0.0.10] (2025-12-09)
 
 #### Features
