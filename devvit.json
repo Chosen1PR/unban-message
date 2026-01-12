@@ -36,6 +36,12 @@
         "helpText": "Type the message text you want to send the user when they are unbanned. If left blank, no message will be sent. You can use markdown formatting here.",
         "defaultValue": ""
       },
+      "ignore-temp-bans": {
+        "type": "boolean",
+        "label": "Ignore expired temporary bans",
+        "helpText": "If enabled, automated unban actions for expired temporary bans will NOT trigger messages to be sent.",
+        "defaultValue": false
+      },
       "mod-blacklist": {
         "type": "paragraph",
         "label": "Mod blocklist",
@@ -45,7 +51,7 @@
       "mod-whitelist": {
         "type": "paragraph",
         "label": "Mod allowlist",
-        "helpText": "Comma (,) separated list of moderator usernames (without leading \"u/\"). Messages will only be sent for unban actions made by these mods. Overrides the blocklist above.",
+        "helpText": "Comma (,) separated list of moderator usernames (without leading \"u/\"). Messages will only be sent for unban actions made by these mods. Overrides the blocklist above. Leave blank to allow all mods.",
         "defaultValue": ""
       }
     }
@@ -64,6 +70,9 @@
   },
   "triggers": {
     "onModAction": "/internal/triggers/on-mod-action"
+  },
+  "marketingAssets": {
+    "icon": "assets/um-icon.png"
   },
   "dev": {
     "subreddit": "CapitalOneBank"

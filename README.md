@@ -5,10 +5,18 @@ This app sends a customizable message (via modmail or private chat) automaticall
 - Choose whether to send as the subreddit via modmail or privately from the bot account (whose inbox is NOT monitored).
 - Define a blocklist of mods whose unban actions will not trigger messages.
 - Define an allowlist of mods if *only* unban actions from certain mods should trigger messages.
+- Optionally ignore expired temporary bans.
 
 ---
 
 ## Changelog
+
+### [1.0.0] (2026-01-12)
+
+#### Features
+
+- Added a setting to ignore expired temporary bans.
+- Bumped major version.
 
 ### [0.1.1] (2025-12-24)
 
