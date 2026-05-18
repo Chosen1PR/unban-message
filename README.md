@@ -11,7 +11,7 @@ This app sends a customizable message (via modmail or private chat) automaticall
 
 ## Changelog
 
-### [1.0.1] (2026-05-18)
+### [1.0.2] (2026-05-18)
 
 #### Features
 
