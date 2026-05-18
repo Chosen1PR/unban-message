@@ -11,6 +11,14 @@ This app sends a customizable message (via modmail or private chat) automaticall
 
 ## Changelog
 
+### [1.0.1] (2026-05-18)
+
+#### Features
+
+- App icon now appears as app account's avatar.
+- Updated description on app profile page.
+- Updated Devvit CLI to 0.12.24.
+
 ### [1.0.0] (2026-01-12)
 
 #### Features
