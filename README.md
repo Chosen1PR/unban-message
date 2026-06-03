@@ -11,6 +11,11 @@ This app sends a customizable message (via modmail or private chat) automaticall
 
 ## Changelog
 
+### [1.0.3] (2026-06-03)
+
+- Removed the Settings menu item at subreddit level for a cleaner menu. Settings are still accessible from developers.reddit.com.
+- Updated Devvit CLI to 0.13.2.
+
 ### [1.0.2] (2026-05-18)
 
 #### Features

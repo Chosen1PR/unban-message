@@ -56,18 +56,6 @@
       }
     }
   },
-  "menu": {
-    "items": [
-      {
-        "label": "Unban Message",
-        "description": "Settings",
-        "forUserType": "moderator",
-        "location": ["subreddit"],
-        "endpoint": "/internal/menu/app-settings",
-        "postFilter": "none"
-      }
-    ]
-  },
   "triggers": {
     "onModAction": "/internal/triggers/on-mod-action"
   },
