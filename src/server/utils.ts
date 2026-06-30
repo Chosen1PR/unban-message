@@ -33,7 +33,7 @@ export async function sendMessageToUser(username: string, messageText: string, s
   }
   catch (error) { // Log specific error messages
     if (error == "NOT_WHITELISTED_BY_USER_MESSAGE")
-      console.log(`Error: Message not sent. u/${username} likely has chat/messaging disabled or has blocked the u/unban-message bot account.`);
+      console.log(`Error: Message not sent. u/${username} likely has chat/messaging disabled or has blocked the u/unban-message app account.`);
     else console.log(`Error: Message not sent to u/${username}.`);
   }
 }
@@ -76,6 +76,25 @@ function isModInList(username: string, modList: string) {
     if (username == modUsernames[i]) return true;
   }
   return false;
+}
+
+// Helper function to get the values from the raw JSON request body.
+export function getRequestBodyValue(body: any, ...paths: Array<string[]>) {
+  for (const path of paths) {
+    let current: any = body;
+    let found = true;
+    for (const key of path) {
+      if (current == null || typeof current !== 'object' || !(key in current)) {
+        found = false;
+        break;
+      }
+      current = current[key];
+    }
+    if (found && current != null && current !== '') {
+      return String(current);
+    }
+  }
+  return '';
 }
 
 // Helper function to create a delay.
