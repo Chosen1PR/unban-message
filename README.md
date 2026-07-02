@@ -11,6 +11,10 @@ This app sends a customizable message (via modmail or private chat) automaticall
 
 ## Changelog
 
+### [1.0.5] (2026-07-02)
+
+- Better workaround for the previous bug fix with fewer API calls.
+
 ### [1.0.4] (2026-06-29)
 
 #### Bug Fix

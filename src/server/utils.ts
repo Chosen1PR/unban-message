@@ -97,6 +97,21 @@ export function getRequestBodyValue(body: any, ...paths: Array<string[]>) {
   return '';
 }
 
+// Helper function for when Devvit is borked and shows an invalid username.
+export function isValidUsername(username: string) {
+  const name = username.toLowerCase();
+  return (
+    name != '[redacted]' &&
+    name != '[deleted]' &&
+    name != ''
+  );
+}
+
+// Helper function for when Devvit is borked and shows an invalid user ID.
+export function isValidUserId(userId: string) {
+  return (userId != 't2_0' && userId != '');
+}
+
 // Helper function to create a delay.
 // Used for waiting for mod log to update before checking for temporary bans.
 function delay(seconds: number): Promise<void> {

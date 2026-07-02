@@ -10,7 +10,9 @@ import {
   isModIgnored,
   sendMessageToUser,
   wasBanTemporary,
-  getRequestBodyValue
+  getRequestBodyValue,
+  isValidUserId,
+  isValidUsername
 } from "./utils.js";
 
 import { UserId } from "./types.js"
@@ -42,9 +44,14 @@ router.post('/internal/triggers/on-mod-action', async (req, res): Promise<void> 
   try {
     if (action === "unbanuser") {
       // If we're here, this is an unban action.
-      const modUsername = getRequestBodyValue(req.body, ['moderator', 'name']) ?? '',
-      userId = getRequestBodyValue(req.body, ['targetUser', 'id']) ?? '';
-      if (userId == '' || userId == 't2_0') return;
+      const modUsername = getRequestBodyValue(req.body, ['moderator', 'name']),
+      userId = getRequestBodyValue(req.body, ['targetUser', 'id']);
+      let username = getRequestBodyValue(req.body, ['targetUser', 'name']);
+      if (!isValidUsername(username) && isValidUserId(userId)) { // if username is not valid but user ID is
+        const user = await reddit.getUserById(userId as UserId);
+        if (user) username = user.username;
+      }
+      if (!isValidUsername(username)) return; // If even the workaround didn't work, do nothing.
       const allSettings = await settings.getAll();
       const appEnabled = allSettings["enable-message"] as boolean;
       if (!appEnabled) return; // If app is disabled, do nothing.
@@ -53,15 +60,13 @@ router.post('/internal/triggers/on-mod-action', async (req, res): Promise<void> 
       const modIgnored = isModIgnored(modUsername, modWhitelist, modBlacklist);
       if (modIgnored) return; // If mod is ignored, do nothing.
       const ignoreTempBans = allSettings["ignore-temp-bans"] as boolean ?? false;
-      const user = await reddit.getUserById(userId as UserId);
-      if (!user) return;
       if (ignoreTempBans) {
-        if (await wasBanTemporary(user.username)) return; // If ban was temporary and we're ignoring those, do nothing.
+        if (await wasBanTemporary(username)) return; // If ban was temporary and we're ignoring those, do nothing.
       }
       // Else, send message to user.
       const messageText = allSettings["message-text"] as string ?? '';
       const sendAsSubreddit = allSettings["send-as-subreddit"] as boolean;
-      await sendMessageToUser(user.username, messageText, sendAsSubreddit);
+      await sendMessageToUser(username, messageText, sendAsSubreddit);
     }
     res.status(200).json({ status: 'ok' });
   }
